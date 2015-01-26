@@ -27,7 +27,7 @@ function _change() {
 	2. 修改其src为/day11_3/VerifyCodeServlet
 	*/
 	var imgEle = document.getElementById("img");
-	imgEle.src = "/OpenPortal/VCodeServlet?a=" + new Date().getTime();
+	imgEle.src = "<%=path%>/VCodeServlet?a=" + new Date().getTime();
 }
 </script>
 	
@@ -35,7 +35,7 @@ function _change() {
 <% 
   String username=(String)session.getAttribute("username");
   if(username!=null){
-  	request.getRequestDispatcher(path+"/loginSucc.jsp").forward(request, response);
+  	request.getRequestDispatcher("/loginSucc.jsp").forward(request, response);
   	return;
   }else{
   %>

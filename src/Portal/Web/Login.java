@@ -140,9 +140,9 @@ public class Login extends HttpServlet {
 			session.setAttribute("password", password);
 			session.setAttribute("ip", ip);
 			request.setAttribute("msg", "登录成功！");
-			RequestDispatcher qr=request.getRequestDispatcher("/index.jsp");
-			qr.forward(request, response);
-//			response.sendRedirect(response.encodeUrl("/PortalServer/loginSucc.jsp"));
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			String path = request.getContextPath();
+			response.sendRedirect(response.encodeUrl(path+"/loginSucc.jsp"));
 		}
 		else{
 			if(info==01){
