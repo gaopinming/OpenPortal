@@ -40,9 +40,9 @@ String portalPath = request.getScheme()+"://"+request.getServerName()+":"+reques
     <div id="page-content">
         <div id="login-page">
             <div id="logo">
-                <a href="http://127.0.0.1/"><img alt="LaterThis" src="images/logo.png" /></a>
+                <a href="http://127.0.0.1<%=path%>"><img alt="LaterThis" src="images/logo.png" /></a>
             </div>
-           <form id="loginForm" action="/LoginOut" method="post">
+           <form id="loginForm" action="<%=path%>/LoginOut" method="post">
               <div id="success-login">
               <p>
                         <label style="text-align: center ;"><font color="red"><b><%=message%></b></font></label> <br/>
@@ -59,7 +59,7 @@ String portalPath = request.getScheme()+"://"+request.getServerName()+":"+reques
 			      </div>
               </form>
                 <p id="signup">
-                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1/">PortalServer服务-李硕</a>.  All Rights Reserved.
+                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1<%=path%>">PortalServer服务-李硕</a>.  All Rights Reserved.
                </p>
         </div>
     </div>

@@ -27,7 +27,7 @@ function _change() {
 	2. 修改其src为/day11_3/VerifyCodeServlet
 	*/
 	var imgEle = document.getElementById("img");
-	imgEle.src = "/VCodeServlet?a=" + new Date().getTime();
+	imgEle.src = "/OpenPortal/VCodeServlet?a=" + new Date().getTime();
 }
 </script>
 	
@@ -35,7 +35,7 @@ function _change() {
 <% 
   String username=(String)session.getAttribute("username");
   if(username!=null){
-  	request.getRequestDispatcher("/loginSucc.jsp").forward(request, response);
+  	request.getRequestDispatcher(path+"/loginSucc.jsp").forward(request, response);
   	return;
   }else{
   %>
@@ -62,11 +62,11 @@ function _change() {
     <div id="page-content">
         <div id="login-page">
             <div id="logo">
-                <a href="http://127.0.0.1/"><img alt="LaterThis" src="images/logo.png" /></a>
+                <a href="http://127.0.0.1<%=path%>"><img alt="LaterThis" src="images/logo.png" /></a>
             </div>
            
   
-            <form id="loginForm" action="/Login" method="post">
+            <form id="loginForm" action="<%=path%>/Login" method="post">
                 <div id="normal-login">
                     <p>
                         <label style="text-align: center ;"><font color="red"><b><%=message%></b></font></label> <br/>
@@ -82,7 +82,7 @@ function _change() {
                     <p>
                         <label for="password">验证码</label> <br/> 
                         <input id="vcode"  name="vcode" value="" size="4" />        <img id="img" alt="请输入验证码"
-			src="/VCodeServlet" /><a href="javascript:_change()">      换一张</a><br />
+			src="<%=path%>/VCodeServlet" /><a href="javascript:_change()">      换一张</a><br />
                     </p>
 	                <p>
 	                    <input id="loginSubmit" class="button" type="submit" value="登录" name="commit" />
@@ -92,7 +92,7 @@ function _change() {
                 </div>
                </form>
                 <p id="signup">
-                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1">PortalServer服务-李硕</a>.  All Rights Reserved.
+                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1<%=path%>">PortalServer服务-李硕</a>.  All Rights Reserved.
                </p>
         </div>
     </div>
