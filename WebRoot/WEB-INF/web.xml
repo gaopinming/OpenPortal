@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <display-name>This is the display name of my J2EE component FServlet</display-name>
+    <description>This is the description of my J2EE component FServlet</description>
+    <servlet-class>Portal.Web.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>VCodeServlet</servlet-name>
+    <display-name>This is the display name of my J2EE component FServlet</display-name>
+    <description>This is the description of my J2EE component FServlet</description>
+    <servlet-class>Portal.Web.VCodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginOut</servlet-name>
+    <display-name>This is the display name of my J2EE component FServlet</display-name>
+    <description>This is the description of my J2EE component FServlet</description>
+    <servlet-class>Portal.Web.LoginOut</servlet-class>
+  </servlet>
+
+
+
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VCodeServlet</servlet-name>
+    <url-pattern>/VCodeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginOut</servlet-name>
+    <url-pattern>/LoginOut</url-pattern>
+  </servlet-mapping>
+
+</web-app>
