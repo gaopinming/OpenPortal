@@ -6,7 +6,7 @@ public class StartServer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated mewhile(true){
-		   for(int i=0;i<=100000;i++){
+		   for(int i=0;i<=1000;i++){
 		    	new Thread() {
 	    			public void run() {
 	    				try {
@@ -19,66 +19,6 @@ public class StartServer {
 
 	    		}.start();
 		   }
-		   
-		   for(int i=0;i<=100000;i++){
-		    	new Thread() {
-	    			public void run() {
-	    				try {
-	    					PortalAuthServer.openServer();
-	    				} catch (Exception e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				}
-	    			};
-
-	    		}.start();
-		   }
-		   
-		   for(int i=0;i<=100000;i++){
-		    	new Thread() {
-	    			public void run() {
-	    				try {
-	    					PortalAuthServer.openServer();
-	    				} catch (Exception e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				}
-	    			};
-
-	    		}.start();
-		   }
-		   
-		   for(int i=0;i<=100000;i++){
-		    	new Thread() {
-	    			public void run() {
-	    				try {
-	    					PortalAuthServer.openServer();
-	    				} catch (Exception e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				}
-	    			};
-
-	    		}.start();
-		   }
-		   
-		   for(int i=0;i<=100000;i++){
-		    	new Thread() {
-	    			public void run() {
-	    				try {
-	    					PortalAuthServer.openServer();
-	    				} catch (Exception e) {
-	    					// TODO Auto-generated catch block
-	    					e.printStackTrace();
-	    				}
-	    			};
-
-	    		}.start();
-		   }
-		   
-		  
-        	
-        
 		
 	}
 

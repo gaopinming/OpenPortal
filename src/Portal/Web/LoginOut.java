@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Portal.Action.Req_Login;
-import Portal.Action.Req_Quit;
+import Portal.Server.Action;
 
 public class LoginOut extends HttpServlet {
 
@@ -89,12 +87,15 @@ public class LoginOut extends HttpServlet {
 		
 		try {
 			HttpSession session=request.getSession();
-			String ip=null;
-			ip=(String)session.getAttribute("ip");
-			int info=74;
+			String ip=(String)session.getAttribute("ip");
+			String username=(String)session.getAttribute("username");
+			String password=(String)session.getAttribute("password");
+			int info=99;
 			if(!(ip.equals("")||ip==null)){
-				info=new Req_Quit().Req_Quit(ip, bas_ip, bas_port, portalVer, authType, timeoutSec, sharedSecret);
+				info=new Action().Method("LoginOut",username, password, ip, bas_ip, bas_port, portalVer, authType, timeoutSec, sharedSecret);
 			}else{
+				session.removeAttribute("username");
+				session.removeAttribute("password");
 				request.setAttribute("msg", "退出异常，请重新登录后再退出！");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
@@ -108,11 +109,17 @@ public class LoginOut extends HttpServlet {
 			}
 			else{
 				if(info==10){
+					session.removeAttribute("username");
+					session.removeAttribute("password");
 					request.setAttribute("msg", "请求下线超时!！");
 				}else if(info==11){
 					request.setAttribute("msg", "请求下线被拒绝!！");
 				}else if(info==12){
 					request.setAttribute("msg", "请求下线出错!!");
+				}else if(info==99){
+					session.removeAttribute("username");
+					session.removeAttribute("password");
+					request.setAttribute("msg", "未知错误！！");
 				}
 				
 				RequestDispatcher qr=request.getRequestDispatcher("/index.jsp");

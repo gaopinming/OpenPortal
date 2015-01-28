@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Portal.Action.Req_Login;
+import Portal.Server.Action;
 
 public class Login extends HttpServlet {
 
@@ -125,12 +124,7 @@ public class Login extends HttpServlet {
 		System.out.println(config);
 		
 		
-		
-		
-		
-		
-		int info=new Req_Login().login(username, password, ip, bas_ip, bas_port, portalVer, authType, timeoutSec, sharedSecret);
-		
+		int info=new Action().Method("Login",username, password, ip, bas_ip, bas_port, portalVer, authType, timeoutSec, sharedSecret);
 		if(info==0 || info==22){
 			Cookie cookie=new Cookie("uname", username);
 			cookie.setMaxAge(60*60*24);
@@ -165,6 +159,12 @@ public class Login extends HttpServlet {
 				request.setAttribute("msg", "有一个用户正在认证过程中，请稍后再试");
 			}else if(info==24){
 				request.setAttribute("msg", "用户认证失败（发生错误）");
+			}else if(info==55){
+				request.setAttribute("msg", "暂时不支持该Portal 2   ！！");
+			}else if(info==66){
+				request.setAttribute("msg", "暂时不支持PAP认证方式  ！！");
+			}else if(info==99){
+				request.setAttribute("msg", "未知错误！！");
 			}
 			
 			RequestDispatcher qr=request.getRequestDispatcher("/index.jsp");

@@ -34,7 +34,8 @@ function _change() {
 </head>
 <% 
   String username=(String)session.getAttribute("username");
-  if(username!=null){
+  String ip=(String)session.getAttribute("ip");
+  if(username!=null&&ip!=null){
   	request.getRequestDispatcher("/loginSucc.jsp").forward(request, response);
   	return;
   }else{
