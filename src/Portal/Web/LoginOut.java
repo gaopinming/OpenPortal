@@ -119,7 +119,7 @@ public class LoginOut extends HttpServlet {
 				}else if(info==99){
 					session.removeAttribute("username");
 					session.removeAttribute("password");
-					request.setAttribute("msg", "未知错误！！");
+					request.setAttribute("msg", "未知错误！！请联系作者，QQ:25901875");
 				}
 				
 				RequestDispatcher qr=request.getRequestDispatcher("/index.jsp");
