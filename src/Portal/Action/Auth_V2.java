@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import Portal.Utils.Make_Authenticator;
 import Portal.Utils.Make_ChapPassword;
 import Portal.Utils.WR;
+import Portal.Utils.Write2Log;
 
 public class Auth_V2 {
 
@@ -70,6 +71,7 @@ public class Auth_V2 {
 		}
 
 		System.out.println("REQ Auth" + WR.Getbyte2HexString(Req_Auth));
+		Write2Log.Wr2Log("REQ Auth" + WR.Getbyte2HexString(Req_Auth));
 
 		try {
 
@@ -95,30 +97,38 @@ public class Auth_V2 {
 			}
 			System.out
 					.println("ACK Auth" + WR.Getbyte2HexString(ACK_Auth_Data));
+			Write2Log.Wr2Log("ACK Auth" + WR.Getbyte2HexString(ACK_Auth_Data));
 
 			if ((int) (ACK_Auth_Data[14] & 0xFF) == 0) {
 				System.out.println("认证成功！！");
 				System.out.println("准备发送AFF_ACK_AUTH");
+				Write2Log.Wr2Log("认证成功！！");
+				Write2Log.Wr2Log("准备发送AFF_ACK_AUTH");
 			} else if ((int) (ACK_Auth_Data[14] & 0xFF) == 1) {
 				System.out.println("用户认证请求被拒绝");
+				Write2Log.Wr2Log("用户认证请求被拒绝");
 				ErrorInfo[0] = (byte) 21;
 				return ErrorInfo;
 			} else if ((int) (ACK_Auth_Data[14] & 0xFF) == 2) {
 				System.out.println("用户链接已建立");
+				Write2Log.Wr2Log("用户链接已建立");
 				ErrorInfo[0] = (byte) 22;
 				return ErrorInfo;
 			} else if ((int) (ACK_Auth_Data[14] & 0xFF) == 3) {
 				System.out.println("有一个用户正在认证过程中，请稍后再试");
+				Write2Log.Wr2Log("有一个用户正在认证过程中，请稍后再试");
 				ErrorInfo[0] = (byte) 23;
 				return ErrorInfo;
 			} else if ((int) (ACK_Auth_Data[14] & 0xFF) == 4) {
 				System.out.println("用户认证失败（发生错误）");
+				Write2Log.Wr2Log("用户认证失败（发生错误）");
 				ErrorInfo[0] = (byte) 24;
 				return ErrorInfo;
 			}
 
 		} catch (IOException e) {
 			System.out.println("用户认证服务器无响应！！！");
+			Write2Log.Wr2Log("用户认证服务器无响应！！！");
 			ErrorInfo[0] = (byte) 02;
 			return ErrorInfo;
 		} finally {
@@ -150,6 +160,8 @@ public class Auth_V2 {
 		
 		System.out.println("AFF_Ack_Auth"
 				+ WR.Getbyte2HexString(AFF_Ack_Auth_Data));
+		Write2Log.Wr2Log("AFF_Ack_Auth"
+				+ WR.Getbyte2HexString(AFF_Ack_Auth_Data));
 
 		try {
 
@@ -161,9 +173,11 @@ public class Auth_V2 {
 					InetAddress.getByName(Bas_IP), bas_PORT);
 			dataSocket.send(requestPacket);
 			System.out.println("发送AFF_Ack_Auth成功！！");
+			Write2Log.Wr2Log("发送AFF_Ack_Auth成功！！");
 
 		} catch (IOException e) {
 			System.out.println("发送AFF_Ack_Auth出错！！");
+			Write2Log.Wr2Log("发送AFF_Ack_Auth出错！！");
 			ErrorInfo[0] = (byte) 20;
 			return ErrorInfo;
 		} finally {

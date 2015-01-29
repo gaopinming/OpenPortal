@@ -7,6 +7,7 @@ import java.net.InetAddress;
 
 import Portal.Utils.Make_Authenticator;
 import Portal.Utils.WR;
+import Portal.Utils.Write2Log;
 
 public class Quit_V2 {
 
@@ -39,6 +40,7 @@ public class Quit_V2 {
 			}
 			
 			System.out.println("REQ Quit" + WR.Getbyte2HexString(Req_Quit));
+			Write2Log.Wr2Log("REQ Quit" + WR.Getbyte2HexString(Req_Quit));
 
 			try {
 
@@ -59,9 +61,11 @@ public class Quit_V2 {
 				dataSocket.receive(receivePacket);
 
 				System.out.println("ACK Quit" + WR.Getbyte2HexString(ACK_Data));
+				Write2Log.Wr2Log("ACK Quit" + WR.Getbyte2HexString(ACK_Data));
 
 			} catch (IOException e) {
 				System.out.println("下线请求服务器无响应！！！");
+				Write2Log.Wr2Log("下线请求服务器无响应！！！");
 				Ack_Quit_Error(Req_Quit, Bas_IP, bas_PORT,sharedSecret);
 				return 10;
 			} finally {
@@ -71,14 +75,17 @@ public class Quit_V2 {
 			if ((int) (ACK_Data[14] & 0xFF) != 0) {
 				if ((int) (ACK_Data[14] & 0xFF) == 1) {
 					System.out.println("请求下线被拒绝");
+					Write2Log.Wr2Log("请求下线被拒绝");
 					return 11;
 				} else if ((int) (ACK_Data[14] & 0xFF) == 2) {
 					System.out.println("请求下线出错");
+					Write2Log.Wr2Log("请求下线出错");
 					return 12;
 				}
 
 			} else {
 				System.out.println("请求下线成功！！");
+				Write2Log.Wr2Log("请求下线成功！！");
 			}
 			return 0;
 //---------------------------------------------------------------------------------------------------------------------------
@@ -104,10 +111,13 @@ public class Quit_V2 {
 			
 			if(type == 1){
 				System.out.println("发送Challenge超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
+				Write2Log.Wr2Log("发送Challenge超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
 			}else if(type == 2){
 				System.out.println("发送Auth超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
+				Write2Log.Wr2Log("发送Auth超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
 			}else{
 				System.out.println("发送未知超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
+				Write2Log.Wr2Log("发送未知超时回复报文： " + WR.Getbyte2HexString(Req_Quit));
 			}
 
 			try {
@@ -121,20 +131,26 @@ public class Quit_V2 {
 				dataSocket.send(requestPacket);
 				if(type == 1){
 					System.out.println("发送Challenge超时回复报文成功！！！！");
+					Write2Log.Wr2Log("发送Challenge超时回复报文成功！！！！");
 				}else if(type == 2){
 					System.out.println("发送Auth超时回复报文成功！！！！");
+					Write2Log.Wr2Log("发送Auth超时回复报文成功！！！！");
 				}else{
 					System.out.println("发送未知超时回复报文成功！！！！");
+					Write2Log.Wr2Log("发送未知超时回复报文成功！！！！");
 				}
 				
 
 			} catch (IOException e) {
 				if(type == 1){
 					System.out.println("发送Challenge超时回复报文失败！！！！");
+					Write2Log.Wr2Log("发送Challenge超时回复报文失败！！！！");
 				}else if(type == 2){
 					System.out.println("发送Auth超时回复报文失败！！！！");
+					Write2Log.Wr2Log("发送Auth超时回复报文失败！！！！");
 				}else{
 					System.out.println("发送未知超时回复报文失败！！！！");
+					Write2Log.Wr2Log("发送未知超时回复报文失败！！！！");
 				}
 				return 0;
 			} finally {
@@ -164,6 +180,7 @@ public class Quit_V2 {
 		
 		
 		System.out.println("发送下线请求超时回复报文: " + WR.Getbyte2HexString(Req_Quit));
+		Write2Log.Wr2Log("发送下线请求超时回复报文: " + WR.Getbyte2HexString(Req_Quit));
 		DatagramSocket dataSocket = null;
 		try {
 
@@ -173,10 +190,11 @@ public class Quit_V2 {
 			DatagramPacket requestPacket = new DatagramPacket(Req_Quit,
 					Req_Quit.length, InetAddress.getByName(Bas_IP), bas_PORT);
 			dataSocket.send(requestPacket);
-			System.out.println("下线请求超时回复报文发送成功！！！");
+			Write2Log.Wr2Log("下线请求超时回复报文发送成功！！！");
 
 		} catch (IOException e) {
 			System.out.println("下线请求超时回复报文发送失败！！！");
+			Write2Log.Wr2Log("下线请求超时回复报文发送失败！！！");
 		} finally {
 			dataSocket.close();
 		}

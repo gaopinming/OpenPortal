@@ -63,7 +63,7 @@ function _change() {
     <div id="page-content">
         <div id="login-page">
             <div id="logo">
-                <a href="http://127.0.0.1<%=path%>"><img alt="LaterThis" src="images/logo.png" /></a>
+                <a href="<%=basePath%>"><img alt="LaterThis" src="images/logo.png" /></a>
             </div>
            
   
@@ -93,7 +93,7 @@ function _change() {
                 </div>
                </form>
                 <p id="signup">
-                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1<%=path%>">PortalServer服务-李硕</a>.  All Rights Reserved.
+                   Copyright &copy; 2014 - 2015 <a href="<%=basePath%>">PortalServer服务-李硕</a>.  All Rights Reserved.
                </p>
         </div>
     </div>

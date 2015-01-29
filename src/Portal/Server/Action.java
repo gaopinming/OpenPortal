@@ -7,6 +7,7 @@ import Portal.Action.Challenge_V2;
 import Portal.Action.Quit_V1;
 import Portal.Action.Quit_V2;
 import Portal.Utils.WR;
+import Portal.Utils.Write2Log;
 
 public class Action {
 	// 构建portal协议中的字段包
@@ -91,6 +92,7 @@ public class Action {
 				Challenge[i] = Buff[34 + i];
 			}
 			System.out.println("获得Challenge：" + WR.Getbyte2HexString(Challenge));
+			Write2Log.Wr2Log("获得Challenge：" + WR.Getbyte2HexString(Challenge));
 			// 创建Ack_Challenge_V2包
 			byte[] Ack_Auth_V2 = new Auth_V2().Action(Bas_IP, bas_PORT,
 					timeout_Sec, Buff, in_username, in_password, ReqID,
@@ -136,6 +138,8 @@ public class Action {
 			for (int i = 0; i < Challenge.length; i++) {
 				Challenge[i] = Buff[18 + i];
 			}
+			System.out.println("获得Challenge：" + WR.Getbyte2HexString(Challenge));
+			Write2Log.Wr2Log("获得Challenge：" + WR.Getbyte2HexString(Challenge));
 			// 创建Ack_Challenge_V1包
 			byte[] Ack_Auth_V1 = new Auth_V1().Action(Bas_IP, bas_PORT,
 					timeout_Sec, Buff, in_username, in_password, ReqID,

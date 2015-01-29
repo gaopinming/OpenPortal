@@ -33,9 +33,11 @@ public class Make_ChapPassword {
 			 md.update(buf);
 			 ChapPwd = md.digest(); 
 			 System.out.println("生成Chap-Password" + WR.Getbyte2HexString(ChapPwd));
+			 Write2Log.Wr2Log("生成Chap-Password" + WR.Getbyte2HexString(ChapPwd));
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			System.out.println("生成Chap-Password出错！");
+			Write2Log.Wr2Log("生成Chap-Password出错！");
 		}
 		return ChapPwd;
 	}

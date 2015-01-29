@@ -53,9 +53,11 @@ public class Make_Authenticator {
 			 md.update(buf);
 			 Authen = md.digest(); 
 			 System.out.println("生成Request Authenticator :" + WR.Getbyte2HexString(Authen));
+			 Write2Log.Wr2Log("生成Request Authenticator :" + WR.Getbyte2HexString(Authen));
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			System.out.println("生成Request Authenticator出错！");
+			Write2Log.Wr2Log("生成Request Authenticator出错！");
 		}
 		return Authen;
 	}

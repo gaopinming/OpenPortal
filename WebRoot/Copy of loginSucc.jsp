@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%
 String portalPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
-String radiusPath = request.getScheme()+"://"+request.getServerName()+":"+1817+"/login";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +22,6 @@ String radiusPath = request.getScheme()+"://"+request.getServerName()+":"+1817+"
 </head>
  <%
     String username=(String)session.getAttribute("username");
-    String password=(String)session.getAttribute("password");
     String ip=(String)session.getAttribute("ip");
     String message="";
     String msg=(String)request.getAttribute("msg");
@@ -42,7 +40,7 @@ String radiusPath = request.getScheme()+"://"+request.getServerName()+":"+1817+"
     <div id="page-content">
         <div id="login-page">
             <div id="logo">
-                <a href="<%=basePath%>"><img alt="LaterThis" src="images/logo.png" /></a>
+                <a href="http://127.0.0.1<%=path%>"><img alt="LaterThis" src="images/logo.png" /></a>
             </div>
            <form id="loginForm" action="<%=path%>/LoginOut" method="post">
               <div id="success-login">
@@ -60,17 +58,8 @@ String radiusPath = request.getScheme()+"://"+request.getServerName()+":"+1817+"
 			        </p>
 			      </div>
               </form>
-              <form id="Form" action="<%=radiusPath%>" method="post">
-              <div id="success-login">
-              <p>
-               <input name="username" type="hidden" value="<%=username%>" />
-               <input name="password" type="hidden" value="<%=password%>" />
-			          <input id="submit" class="button" type="submit" value="点击查询用户信息" name="submit" />  
-			        </p>
-			      </div>
-              </form>
                 <p id="signup">
-                   Copyright &copy; 2014 - 2015 <a href="<%=basePath%>">PortalServer服务-李硕</a>.  All Rights Reserved.
+                   Copyright &copy; 2014 - 2015 <a href="http://127.0.0.1<%=path%>">PortalServer服务-李硕</a>.  All Rights Reserved.
                </p>
         </div>
     </div>

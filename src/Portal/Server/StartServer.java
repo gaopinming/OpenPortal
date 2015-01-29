@@ -6,7 +6,7 @@ public class StartServer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated mewhile(true){
-		   for(int i=0;i<=1000;i++){
+		   for(int i=0;i<=100;i++){
 		    	new Thread() {
 	    			public void run() {
 	    				try {

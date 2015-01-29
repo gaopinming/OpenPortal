@@ -120,6 +120,8 @@ public class Login extends HttpServlet {
 			request.setAttribute("msg", "config.properties 数据库配置文件读取失败！！");
 	    	request.getRequestDispatcher("/index.jsp").forward(request, response);
 	    	return;
+		}finally{
+			fis.close();
 		}
 		System.out.println(config);
 		
@@ -150,7 +152,7 @@ public class Login extends HttpServlet {
 			}else if(info==13){
 				request.setAttribute("msg", "有一个用户正在认证过程中，请稍后再试!");
 			}else if(info==14){
-				request.setAttribute("msg", "用户请求Challenge失败（发生错误）");
+				request.setAttribute("msg", "用户请求Challenge失败");
 			}else if(info==21){
 				request.setAttribute("msg", "用户认证请求被拒绝");
 			}else if(info==22){
@@ -158,7 +160,7 @@ public class Login extends HttpServlet {
 			}else if(info==23){
 				request.setAttribute("msg", "有一个用户正在认证过程中，请稍后再试");
 			}else if(info==24){
-				request.setAttribute("msg", "用户认证失败（发生错误）");
+				request.setAttribute("msg", "用户认证失败");
 			}else if(info==55){
 				request.setAttribute("msg", "portalVer配置错误！！  0=Chap 1=pap");
 			}else if(info==66){
