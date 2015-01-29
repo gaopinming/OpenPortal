@@ -8,7 +8,6 @@ public class Write2Log {
 	public static void Wr2Log(String aaa) {
 		String path = System.getProperty("user.dir");
 		File file = new File(path + "log.txt");
-		System.out.println(path + "log.txt");
 		if (!file.exists()) {
 
 			try {
